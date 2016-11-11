@@ -13,7 +13,7 @@ Base.query = db_session.query_property()
 
 # Set your classes here.
 
-'''
+
 class User(Base):
     __tablename__ = 'Users'
 
@@ -25,7 +25,17 @@ class User(Base):
     def __init__(self, name=None, password=None):
         self.name = name
         self.password = password
-'''
+
+class NGO(Base):
+    __tablename__ = 'NGO'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120),unique=True)
+    description = db.Column(db.String(600), unique = True)
+
+    def __init__(self, name=None, description=None):
+        self.name = name
+        self.description = description
 
 # Create tables.
 Base.metadata.create_all(bind=engine)
